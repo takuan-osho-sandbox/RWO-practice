@@ -22,3 +22,8 @@ let render_row row widths =
   "|" ^ String.concat ~sep:"|" padded ^ "|"
 
 let rr = render_row ["Hello";"World"] [10;15];;
+
+let render_table header rows =
+  let widths = max_widths header rows in
+  String.concat ~sep:"\n"
+    (render_row header widths :: render_separator widths :: List.map rows ~f:(fun row -> render_row row widths))
