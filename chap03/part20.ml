@@ -16,3 +16,9 @@ let pad s length =
   " " ^ s ^ String.make (length - String.length s + 1) ' '
 
 let p = pad "hello" 10
+
+let render_row row widths =
+  let padded = List.map2_exn row widths ~f:pad in
+  "|" ^ String.concat ~sep:"|" padded ^ "|"
+
+let rr = render_row ["Hello";"World"] [10;15];;
