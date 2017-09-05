@@ -11,3 +11,8 @@ let render_separator widths =
     "|" ^ String.concat ~sep:"+" pieces ^ "|"
 
 let s = render_separator [3;6;2]
+
+let pad s length =
+  " " ^ s ^ String.make (length - String.length s + 1) ' '
+
+let p = pad "hello" 10
