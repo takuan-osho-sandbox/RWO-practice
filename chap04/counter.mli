@@ -17,3 +17,5 @@ val to_list : t -> (string * int) list
     the one before and after the median is returned. *)
 type median = | Median of string
               | Before_and_after of string * string
+
+val median : t -> median
