@@ -20,6 +20,3 @@ type session_info = {
   host: Hostname.t;
   when_started: Time.t;
 }
-
-let sessions_have_same_user s1 s2 =
-  s1.user = s2.host
