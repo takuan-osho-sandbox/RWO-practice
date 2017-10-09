@@ -13,19 +13,19 @@ let color_by_number number text =
 type weight = Regular | Bold
 
 type color =
-  | Basic of basic_color * weight (* basic colors, regular and bold *)
+  | Basic of basic_color           (* basic colors *)
+  | Bold  of basic_color           (* bold basic colors *)
   | RGB   of int * int * int       (* 6x6x6 color cube *)
   | Gray  of int                   (* 24 grayscale levels *)
 
 let color_to_int = function
-  | Basic (basic_color, weight) ->
-    let base = match weight with Bold -> 8 | Regular -> 0 in
-    base + basic_color_to_int basic_color
+  | Basic basic_color -> basic_color_to_int basic_color
+  | Bold basic_color -> 8 + basic_color_to_int basic_color
   | RGB (r, g, b) -> 16 + b + g * 6 + r * 36
   | Gray i -> 232 + i
 
 let color_print color s =
   printf "%s\n" (color_by_number (color_to_int color) s)
 
-let () = color_print (Basic (Red, Bold)) "A bold red!"
+let () = color_print (Basic Red) "A bold red!"
 let () = color_print (Gray 4) "A muted gray..."
